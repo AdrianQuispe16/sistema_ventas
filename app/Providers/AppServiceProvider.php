@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Gate; 
+use App\Models\User;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        //gates em laravel que hacen los gates disponibles en toda la aplicacion
+        Gate::define('ver-admin', function (User $user) {
+            return $user->rol === 'admin';
+        });
+
+        Gate::define('ver-ventas', function (User $user) {
+            return in_array($user->rol, ['admin', 'cajero']);
+        });
+    }
+}
