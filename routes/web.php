@@ -13,7 +13,7 @@ use App\Http\Controllers\Reportes_productos;
 use Illuminate\Support\Facades\Route;
 
 // Crear usuario admin inicial
-// Route::get('/crear-admin', [AuthController::class, 'crearAdmin']);   
+Route::get('/crear-admin', [AuthController::class, 'crearAdmin']);   
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
